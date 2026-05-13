@@ -9,8 +9,14 @@ export default function AppShell({ sidebarProps, topbarTitle, topbarActions, chi
         <Topbar title={topbarTitle}>
           {topbarActions}
         </Topbar>
-        <main className="page-enter" style={{ padding: '22px 24px', flex: 1 }}>
-          {children}
+        <main
+          className="page-enter"
+          style={{
+            padding: '22px 24px',
+            paddingTop: 'calc(var(--topbar-h) + 22px)',
+            flex: 1,
+          }}
+        >          {children}
         </main>
       </div>
     </div>
