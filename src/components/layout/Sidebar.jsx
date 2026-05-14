@@ -5,18 +5,20 @@ export default function Sidebar({ bg, logoIcon, logoName, logoSub, navGroups, us
   const navigate = useNavigate()
 
   return (
-    <nav style={{
-      width: 'var(--sidebar-w)',
-      background: bg,
-      position: 'fixed',
-      top: 'var(--switcher-h)',
-      left: 0,
-      height: 'calc(100vh - var(--switcher-h))',
-      display: 'flex',
-      flexDirection: 'column',
-      zIndex: 100,
-      overflowY: 'auto',
-    }}>
+    <nav
+      style={{
+        width: 'var(--sidebar-w)',
+        background: bg,
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        height: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+        zIndex: 100,
+        overflowY: 'auto',
+      }}
+    >
       {/* Logo */}
       <div style={{ padding: '18px 20px 14px', borderBottom: '1px solid rgba(255,255,255,.1)' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
@@ -53,7 +55,7 @@ export default function Sidebar({ bg, logoIcon, logoName, logoSub, navGroups, us
                     display: 'flex', alignItems: 'center', gap: 10,
                     padding: '9px 10px', borderRadius: 8, marginBottom: 2,
                     cursor: 'pointer',
-                    color:      isActive ? '#fff' : 'rgba(255,255,255,.65)',
+                    color: isActive ? '#fff' : 'rgba(255,255,255,.65)',
                     background: isActive ? 'rgba(255,255,255,.18)' : 'transparent',
                     fontWeight: isActive ? 500 : 400,
                     fontSize: 13,
