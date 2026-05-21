@@ -37,12 +37,23 @@ export function CardBody({ children, style = {} }) {
 // ── PageHeader ────────────────────────────────────────────────────────────
 export function PageHeader({ title, sub, action }) {
   return (
-    <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: 20 }}>
+    <div style={{ 
+      display: 'flex', 
+      alignItems: 'center', 
+      justifyContent: 'space-between', 
+      marginBottom: 24,
+      padding: '14px 20px',
+      background: 'var(--surface)',
+      border: '1px solid var(--border)',
+      borderLeft: '5px solid var(--theme-color, var(--brand))',
+      borderRadius: '12px',
+      boxShadow: 'var(--shadow-sm)'
+    }}>
       <div>
-        <h2 style={{ fontSize: 19, fontWeight: 600, letterSpacing: '-.02em' }}>{title}</h2>
-        {sub && <p style={{ fontSize: 12, color: 'var(--text-3)', marginTop: 2 }}>{sub}</p>}
+        <h2 style={{ fontSize: 18, fontWeight: 800, letterSpacing: '-.02em', color: 'var(--theme-color, #0B2545)', margin: 0 }}>{title}</h2>
+        {sub && <p style={{ fontSize: 11.5, color: 'var(--text-3)', marginTop: 4, margin: 0, fontWeight: 500 }}>{sub}</p>}
       </div>
-      {action}
+      {action && <div style={{ display: 'flex', alignItems: 'center' }}>{action}</div>}
     </div>
   )
 }

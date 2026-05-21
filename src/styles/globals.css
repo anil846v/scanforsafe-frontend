@@ -7,33 +7,33 @@
 
 /* ── DESIGN TOKENS ── */
 :root {
-  --brand:        #0F6E56;
-  --brand-mid:    #1D9E75;
-  --brand-light:  #E1F5EE;
-  --brand-pale:   #f0faf6;
+  --brand:        #0D5CA5;
+  --brand-mid:    #1EAA4F;
+  --brand-light:  #E6F0FA;
+  --brand-pale:   #F0F6FC;
 
-  --accent:       #BA7517;
-  --accent-light: #FEF3DC;
+  --accent:       #F27A18;
+  --accent-light: #FDF2E9;
 
   --danger:       #C0392B;
   --danger-light: #FDEDEC;
 
-  --info:         #185FA5;
+  --info:         #00509D;
   --info-light:   #EBF3FB;
 
   --purple:       #6C4AB7;
   --purple-light: #F0ECFB;
 
   --surface:      #ffffff;
-  --surface-2:    #F7F8F6;
-  --surface-3:    #EEEEED;
+  --surface-2:    #F4F6F9;
+  --surface-3:    #E9ECF1;
 
-  --border:       rgba(0, 0, 0, 0.08);
-  --border-md:    rgba(0, 0, 0, 0.14);
+  --border:       rgba(0, 0, 0, 0.06);
+  --border-md:    rgba(0, 0, 0, 0.12);
 
-  --text-1:       #111211;
-  --text-2:       #4A4E4B;
-  --text-3:       #828780;
+  --text-1:       #0F1E2C;
+  --text-2:       #4A5568;
+  --text-3:       #718096;
 
   --sidebar-w:    240px;
   --topbar-h:     60px;
@@ -43,7 +43,7 @@
   --radius-lg:    14px;
 
   --shadow-sm:    0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
-  --shadow:       0 4px 12px rgba(0,0,0,0.07), 0 1px 3px rgba(0,0,0,0.05);
+  --shadow:       0 4px 12px rgba(0,0,0,0.05), 0 1px 3px rgba(0,0,0,0.03);
 }
 
 /* ── BASE ── */
@@ -64,14 +64,14 @@ body {
 table { width: 100%; border-collapse: collapse; font-size: 13px; }
 thead th {
   text-align: left;
-  font-size: 10px;
-  font-weight: 600;
+  font-size: 11px;
+  font-weight: 700;
   letter-spacing: .05em;
   text-transform: uppercase;
-  color: var(--text-3);
-  padding: 9px 14px;
-  background: var(--surface-2);
-  border-bottom: 1px solid var(--border);
+  color: #ffffff;
+  padding: 10px 14px;
+  background: var(--theme-color, #0C447C);
+  border-bottom: 1.5px solid rgba(0, 0, 0, 0.15);
 }
 tbody tr { border-bottom: 1px solid var(--border); transition: background .1s; }
 tbody tr:last-child { border-bottom: none; }

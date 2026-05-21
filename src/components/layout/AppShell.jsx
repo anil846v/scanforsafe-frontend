@@ -1,12 +1,36 @@
+import { useState, useEffect } from 'react'
 import Sidebar from './Sidebar'
 import Topbar from './Topbar'
 
 export default function AppShell({ sidebarProps, topbarTitle, topbarActions, children }) {
+  const [collapsed, setCollapsed] = useState(() => {
+    return localStorage.getItem('sidebar_collapsed') === 'true';
+  });
+
+  const toggleSidebar = () => {
+    setCollapsed(prev => {
+      const next = !prev;
+      localStorage.setItem('sidebar_collapsed', String(next));
+      return next;
+    });
+  };
+
+  const sidebarW = collapsed ? '72px' : '240px';
+
   return (
-    <div style={{ display: 'flex' }}>
-      <Sidebar {...sidebarProps} />
-      <div style={{ marginLeft: 'var(--sidebar-w)', flex: 1, display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
-        <Topbar title={topbarTitle}>
+    <div style={{ display: 'flex', '--sidebar-w': sidebarW, '--theme-color': sidebarProps?.bg || 'var(--brand)' }}>
+      <Sidebar {...sidebarProps} collapsed={collapsed} />
+      <div
+        style={{
+          marginLeft: sidebarW,
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          minHeight: '100vh',
+          transition: 'margin-left .2s ease-in-out',
+        }}
+      >
+        <Topbar title={topbarTitle} collapsed={collapsed} onToggleSidebar={toggleSidebar}>
           {topbarActions}
         </Topbar>
         <main
@@ -16,9 +40,11 @@ export default function AppShell({ sidebarProps, topbarTitle, topbarActions, chi
             paddingTop: 'calc(var(--topbar-h) + 22px)',
             flex: 1,
           }}
-        >          {children}
+        >
+          {children}
         </main>
       </div>
     </div>
   )
 }
+
