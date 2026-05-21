@@ -1,6 +1,8 @@
-import { Routes, Route, Navigate, useLocation } from 'react-router-dom'
+import { Routes, Route, Navigate, useLocation, useNavigate } from 'react-router-dom'
 import AppShell from '@/components/layout/AppShell'
 import Btn from '@/components/ui/Btn'
+import { BellIcon } from '@/components/ui/Icons'
+import ProfileDropdown from '@/components/ui/ProfileDropdown'
 import { MktDashboard, MktOnboard, MktLeads, MktSales, MktCommissions, MktTargets } from '@/pages/marketing/MarketingPages'
 import { PAGE_TITLES } from '@/data/mockData'
 
@@ -19,46 +21,30 @@ const NAV_GROUPS = [
 
 export default function MarketingRole({ onLogout }) {
   const location = useLocation()
+  const navigate = useNavigate()
   const segment = location.pathname.split('/').pop()
   const title = PAGE_TITLES[segment] ?? 'My dashboard'
 
+  const currentUser = JSON.parse(localStorage.getItem('currentUser') || '{}')
+  const initials = currentUser.initials || 'PN'
+  const name = currentUser.name || 'Priya Nair'
+  const region = currentUser.region || 'Dubai'
+
   const sidebarProps = {
     bg: '#4A3490',
-    logoIcon: '📣', logoName: 'My Portal', logoSub: 'Marketing Executive',
+    logoIcon: '📣', logoName: name, logoSub: 'Marketing Executive',
     navGroups: NAV_GROUPS,
-    user: { initials: 'PN', name: 'Priya Nair' },
-    userRole: 'Dubai · Executive',
+    user: { initials, name },
+    userRole: `${region} · Executive`,
   }
 
   const topbarActions = (
     <>
-      <div style={{ width: 34, height: 34, borderRadius: 8, border: '1px solid var(--border-md)', background: 'var(--surface)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer', fontSize: 15 }}>🔔</div>
-      <Btn variant="primary" onClick={() => window.location.assign('/marketing/onboard')}>➕ Onboard customer</Btn>
-      <button
-        onClick={onLogout}
-        style={{
-          fontSize: 12,
-          color: '#ff6b6b',
-          background: 'var(--surface-2)',
-          border: '1px solid var(--border-md)',
-          borderRadius: 6,
-          padding: '6px 12px',
-          cursor: 'pointer',
-          fontFamily: "'DM Sans', sans-serif",
-          fontWeight: 500,
-          transition: 'all .15s',
-        }}
-        onMouseOver={(e) => {
-          e.target.style.background = '#ff6b6b'
-          e.target.style.color = '#fff'
-        }}
-        onMouseOut={(e) => {
-          e.target.style.background = 'var(--surface-2)'
-          e.target.style.color = '#ff6b6b'
-        }}
-      >
-        Logout
-      </button>
+      <div style={{ width: 34, height: 34, borderRadius: 8, border: '1px solid var(--border-md)', background: 'var(--surface)', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
+        <BellIcon size={18} color="var(--theme-color, #4A3490)" />
+      </div>
+      <Btn variant="primary" onClick={() => navigate('/marketing/onboard')}>➕ Onboard customer</Btn>
+      <ProfileDropdown onLogout={onLogout} themeColor="#4A3490" />
     </>
   )
 
